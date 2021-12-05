@@ -29,8 +29,10 @@ jobs:
         with:
           toolchain: stable
 
+      - run: sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev
+
       - run: cargo build --release
 
       - run: mkdir dylibs/ && ls target/release/ && cp -v target/release/*.* dylibs/
 
-      - run: cr -1
+      # - run: cr -1
