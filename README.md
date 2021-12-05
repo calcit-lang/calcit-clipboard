@@ -1,6 +1,6 @@
-## Workflow
+## Calcit Clipboard
 
-> Rust library for Calcit runtime.
+> Calcit binding to clipboard, based on [cli_clipboard](https://docs.rs/cli-clipboard/latest/cli_clipboard/index.html).
 
 API 设计: https://github.com/calcit-lang/calcit_runner.rs/discussions/116 .
 
@@ -9,7 +9,10 @@ API 设计: https://github.com/calcit-lang/calcit_runner.rs/discussions/116 .
 APIs:
 
 ```cirru
-lib.core/path-exists? a
+clipboard.core/copy! "|abc"
+
+; "actually read from clipboard"
+clipboard.core/paste!
 ```
 
 Install to `~/.config/calcit/modules/`, compile and provide `*.{dylib,so}` file with `./build.sh`.
