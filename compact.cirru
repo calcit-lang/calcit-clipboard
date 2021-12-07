@@ -1,35 +1,39 @@
 
-{} (:package |lib)
-  :configs $ {} (:init-fn |lib.test/main!) (:reload-fn |lib.test/reload!)
+{} (:package |clipboard)
+  :configs $ {} (:init-fn |clipboard.test/main!) (:reload-fn |clipboard.test/reload!)
     :modules $ []
     :version |0.0.1
+  :entries $ {}
   :files $ {}
-    |lib.core $ {}
+    |clipboard.core $ {}
       :ns $ quote
-        ns lib.core $ :require
-          lib.$meta :refer $ calcit-dirname
-          lib.util :refer $ get-dylib-path
+        ns clipboard.core $ :require
+          clipboard.$meta :refer $ calcit-dirname
+          clipboard.util :refer $ get-dylib-path
       :defs $ {}
-        |path-exists? $ quote
-          defn path-exists? (name)
-            &call-dylib-edn (get-dylib-path "\"/dylibs/libcalcit_std") "\"path_exists" name
-    |lib.test $ {}
+        |copy! $ quote
+          defn copy! (content)
+            &call-dylib-edn (get-dylib-path "\"/dylibs/libclipboard") "\"copy" content
+        |paste! $ quote
+          defn paste! () $ &call-dylib-edn (get-dylib-path "\"/dylibs/libclipboard") "\"paste"
+    |clipboard.test $ {}
       :ns $ quote
-        ns lib.test $ :require
-          lib.core :refer $ path-exists?
-          lib.$meta :refer $ calcit-dirname calcit-filename
+        ns clipboard.test $ :require
+          clipboard.core :refer $ copy! paste!
       :defs $ {}
         |run-tests $ quote
-          defn run-tests () (println "\"%%%% test for lib") (println calcit-filename calcit-dirname)
-            println (path-exists? "\"README.md") (path-exists? "\"build.js")
+          defn run-tests () (println "\"%%%% test for clipboard")
+            println "\"read clipboard" $ paste!
+            println "\"write to.." $ copy!
+              str $ range 100
         |main! $ quote
           defn main! () $ run-tests
         |reload! $ quote
           defn reload! $
-    |lib.util $ {}
+    |clipboard.util $ {}
       :ns $ quote
-        ns lib.util $ :require
-          lib.$meta :refer $ calcit-dirname calcit-filename
+        ns clipboard.util $ :require
+          clipboard.$meta :refer $ calcit-dirname calcit-filename
       :defs $ {}
         |get-dylib-ext $ quote
           defmacro get-dylib-ext () $ case-default (&get-os) "\".so" (:macos "\".dylib") (:windows "\".dll")

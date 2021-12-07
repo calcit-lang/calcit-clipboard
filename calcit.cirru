@@ -2,73 +2,80 @@
 {}
   :users $ {}
     |u0 $ {} (:theme :star-trail) (:id |u0) (:name |chen) (:nickname |chen) (:avatar nil) (:password |d41d8cd98f00b204e9800998ecf8427e)
-  :ir $ {} (:package |lib)
+  :ir $ {} (:package |clipboard)
     :files $ {}
-      |lib.core $ {}
+      |clipboard.core $ {}
         :ns $ {} (:type :expr) (:by |u0) (:at 1630171366222)
           :data $ {}
             |T $ {} (:type :leaf) (:by |u0) (:at 1630171366222) (:text |ns)
-            |j $ {} (:type :leaf) (:by |u0) (:at 1630171366222) (:text |lib.core)
+            |j $ {} (:type :leaf) (:by |u0) (:at 1630171366222) (:text |clipboard.core)
             |r $ {} (:type :expr) (:by |u0) (:at 1630175118985)
               :data $ {}
                 |T $ {} (:type :leaf) (:by |u0) (:at 1630175119637) (:text |:require)
                 |j $ {} (:type :expr) (:by |u0) (:at 1630175120856)
                   :data $ {}
-                    |T $ {} (:type :leaf) (:by |u0) (:at 1634703660055) (:text |lib.$meta)
+                    |T $ {} (:type :leaf) (:by |u0) (:at 1638722987480) (:text |clipboard.$meta)
                     |j $ {} (:type :leaf) (:by |u0) (:at 1630175127717) (:text |:refer)
                     |r $ {} (:type :expr) (:by |u0) (:at 1630175128076)
                       :data $ {}
                         |T $ {} (:type :leaf) (:by |u0) (:at 1630175130627) (:text |calcit-dirname)
                 |r $ {} (:type :expr) (:by |u0) (:at 1633181140100)
                   :data $ {}
-                    |T $ {} (:type :leaf) (:by |u0) (:at 1634703662332) (:text |lib.util)
+                    |T $ {} (:type :leaf) (:by |u0) (:at 1638722991750) (:text |clipboard.util)
                     |j $ {} (:type :leaf) (:by |u0) (:at 1633181140100) (:text |:refer)
                     |r $ {} (:type :expr) (:by |u0) (:at 1633181140100)
                       :data $ {}
                         |T $ {} (:type :leaf) (:by |u0) (:at 1634804181370) (:text |get-dylib-path)
         :configs $ {}
         :defs $ {}
-          |path-exists? $ {} (:type :expr) (:by |u0) (:at 1630219258753)
+          |copy! $ {} (:type :expr) (:by |u0) (:at 1630219258753)
             :data $ {}
               |T $ {} (:type :leaf) (:by |u0) (:at 1630219258753) (:text |defn)
-              |j $ {} (:type :leaf) (:by |u0) (:at 1630219258753) (:text |path-exists?)
+              |j $ {} (:type :leaf) (:by |u0) (:at 1638722870290) (:text |copy!)
               |r $ {} (:type :expr) (:by |u0) (:at 1630219268038)
                 :data $ {}
-                  |T $ {} (:type :leaf) (:by |u0) (:at 1630219268038) (:text |name)
+                  |T $ {} (:type :leaf) (:by |u0) (:at 1638722880362) (:text |content)
               |v $ {} (:type :expr) (:by |u0) (:at 1630219268038)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |u0) (:at 1633253263271) (:text |&call-dylib-edn)
                   |b $ {} (:type :expr) (:by |u0) (:at 1634804189975)
                     :data $ {}
                       |T $ {} (:type :leaf) (:by |u0) (:at 1634804196083) (:text |get-dylib-path)
-                      |j $ {} (:type :leaf) (:by |u0) (:at 1634804199741) (:text "|\"/dylibs/libcalcit_std")
-                  |r $ {} (:type :leaf) (:by |u0) (:at 1630219282714) (:text "|\"path_exists")
-                  |v $ {} (:type :leaf) (:by |u0) (:at 1630219268038) (:text |name)
+                      |j $ {} (:type :leaf) (:by |u0) (:at 1638722906348) (:text "|\"/dylibs/libclipboard")
+                  |r $ {} (:type :leaf) (:by |u0) (:at 1638722878035) (:text "|\"copy")
+                  |v $ {} (:type :leaf) (:by |u0) (:at 1638722885281) (:text |content)
+          |paste! $ {} (:type :expr) (:by |u0) (:at 1638722916972)
+            :data $ {}
+              |T $ {} (:type :leaf) (:by |u0) (:at 1638722916972) (:text |defn)
+              |j $ {} (:type :leaf) (:by |u0) (:at 1638722919726) (:text |paste!)
+              |r $ {} (:type :expr) (:by |u0) (:at 1638722916972)
+                :data $ {}
+              |v $ {} (:type :expr) (:by |u0) (:at 1638722916972)
+                :data $ {}
+                  |T $ {} (:type :leaf) (:by |u0) (:at 1638722916972) (:text |&call-dylib-edn)
+                  |j $ {} (:type :expr) (:by |u0) (:at 1638722916972)
+                    :data $ {}
+                      |T $ {} (:type :leaf) (:by |u0) (:at 1638722916972) (:text |get-dylib-path)
+                      |j $ {} (:type :leaf) (:by |u0) (:at 1638722916972) (:text "|\"/dylibs/libclipboard")
+                  |r $ {} (:type :leaf) (:by |u0) (:at 1638722924519) (:text "|\"paste")
         :proc $ {} (:type :expr) (:by |u0) (:at 1630171366222)
           :data $ {}
-      |lib.test $ {}
+      |clipboard.test $ {}
         :ns $ {} (:type :expr) (:by |u0) (:at 1633149625774)
           :data $ {}
             |T $ {} (:type :leaf) (:by |u0) (:at 1633149625774) (:text |ns)
-            |j $ {} (:type :leaf) (:by |u0) (:at 1633149625774) (:text |lib.test)
+            |j $ {} (:type :leaf) (:by |u0) (:at 1633149625774) (:text |clipboard.test)
             |r $ {} (:type :expr) (:by |u0) (:at 1633149974572)
               :data $ {}
                 |T $ {} (:type :leaf) (:by |u0) (:at 1633149975596) (:text |:require)
                 |j $ {} (:type :expr) (:by |u0) (:at 1634703855566)
                   :data $ {}
-                    |T $ {} (:type :leaf) (:by |u0) (:at 1634703858564) (:text |lib.core)
+                    |T $ {} (:type :leaf) (:by |u0) (:at 1638723003664) (:text |clipboard.core)
                     |j $ {} (:type :leaf) (:by |u0) (:at 1634703859915) (:text |:refer)
                     |r $ {} (:type :expr) (:by |u0) (:at 1634703860100)
                       :data $ {}
-                        |T $ {} (:type :leaf) (:by |u0) (:at 1634703860422) (:text |path-exists?)
-                |r $ {} (:type :expr) (:by |u0) (:at 1634703941759)
-                  :data $ {}
-                    |T $ {} (:type :leaf) (:by |u0) (:at 1634703941759) (:text |lib.$meta)
-                    |j $ {} (:type :leaf) (:by |u0) (:at 1634703941759) (:text |:refer)
-                    |r $ {} (:type :expr) (:by |u0) (:at 1634703941759)
-                      :data $ {}
-                        |T $ {} (:type :leaf) (:by |u0) (:at 1634703941759) (:text |calcit-dirname)
-                        |j $ {} (:type :leaf) (:by |u0) (:at 1634703953240) (:text |calcit-filename)
+                        |T $ {} (:type :leaf) (:by |u0) (:at 1638723065998) (:text |copy!)
+                        |j $ {} (:type :leaf) (:by |u0) (:at 1638723067495) (:text |paste!)
         :configs $ {}
         :defs $ {}
           |run-tests $ {} (:type :expr) (:by |u0) (:at 1633150008092)
@@ -80,23 +87,28 @@
               |v $ {} (:type :expr) (:by |u0) (:at 1634703837934)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |println)
-                  |j $ {} (:type :leaf) (:by |u0) (:at 1634703847178) (:text "|\"%%%% test for lib")
+                  |j $ {} (:type :leaf) (:by |u0) (:at 1638723080025) (:text "|\"%%%% test for clipboard")
               |x $ {} (:type :expr) (:by |u0) (:at 1634703837934)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |println)
-                  |j $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |calcit-filename)
-                  |r $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |calcit-dirname)
+                  |j $ {} (:type :leaf) (:by |u0) (:at 1638723087560) (:text "|\"read clipboard")
+                  |r $ {} (:type :expr) (:by |u0) (:at 1638723088242)
+                    :data $ {}
+                      |T $ {} (:type :leaf) (:by |u0) (:at 1638723088693) (:text |paste!)
               |y $ {} (:type :expr) (:by |u0) (:at 1634703837934)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |println)
-                  |j $ {} (:type :expr) (:by |u0) (:at 1634703837934)
+                  |j $ {} (:type :leaf) (:by |u0) (:at 1638723096244) (:text "|\"write to..")
+                  |r $ {} (:type :expr) (:by |u0) (:at 1638723097382)
                     :data $ {}
-                      |T $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |path-exists?)
-                      |j $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text "|\"README.md")
-                  |r $ {} (:type :expr) (:by |u0) (:at 1634703837934)
-                    :data $ {}
-                      |T $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text |path-exists?)
-                      |j $ {} (:type :leaf) (:by |u0) (:at 1634703837934) (:text "|\"build.js")
+                      |T $ {} (:type :leaf) (:by |u0) (:at 1638723099537) (:text |copy!)
+                      |j $ {} (:type :expr) (:by |u0) (:at 1638723100983)
+                        :data $ {}
+                          |T $ {} (:type :leaf) (:by |u0) (:at 1638723101947) (:text |str)
+                          |j $ {} (:type :expr) (:by |u0) (:at 1638723102312)
+                            :data $ {}
+                              |T $ {} (:type :leaf) (:by |u0) (:at 1638723102935) (:text |range)
+                              |j $ {} (:type :leaf) (:by |u0) (:at 1638723103733) (:text |100)
           |main! $ {} (:type :expr) (:by |u0) (:at 1633149996242)
             :data $ {}
               |T $ {} (:type :leaf) (:by |u0) (:at 1633149996242) (:text |defn)
@@ -114,17 +126,17 @@
                 :data $ {}
         :proc $ {} (:type :expr) (:by |u0) (:at 1633149625774)
           :data $ {}
-      |lib.util $ {}
+      |clipboard.util $ {}
         :ns $ {} (:type :expr) (:by |u0) (:at 1633181044360)
           :data $ {}
             |T $ {} (:type :leaf) (:by |u0) (:at 1633181044360) (:text |ns)
-            |j $ {} (:type :leaf) (:by |u0) (:at 1633181044360) (:text |lib.util)
+            |j $ {} (:type :leaf) (:by |u0) (:at 1633181044360) (:text |clipboard.util)
             |r $ {} (:type :expr) (:by |u0) (:at 1634804160546)
               :data $ {}
                 |T $ {} (:type :leaf) (:by |u0) (:at 1634804161330) (:text |:require)
                 |j $ {} (:type :expr) (:by |u0) (:at 1634804162771)
                   :data $ {}
-                    |T $ {} (:type :leaf) (:by |u0) (:at 1634804167270) (:text |lib.$meta)
+                    |T $ {} (:type :leaf) (:by |u0) (:at 1638723029067) (:text |clipboard.$meta)
                     |j $ {} (:type :leaf) (:by |u0) (:at 1634804168120) (:text |:refer)
                     |r $ {} (:type :expr) (:by |u0) (:at 1634804168421)
                       :data $ {}
@@ -189,6 +201,7 @@
                   |v $ {} (:type :leaf) (:by |u0) (:at 1630245618366) (:text |p)
         :proc $ {} (:type :expr) (:by |u0) (:at 1633181044360)
           :data $ {}
-  :configs $ {} (:port 6001) (:init-fn |lib.test/main!) (:reload-fn |lib.test/reload!)
+  :configs $ {} (:port 6001) (:init-fn |clipboard.test/main!) (:reload-fn |clipboard.test/reload!)
     :modules $ []
     :version |0.0.1
+  :entries $ {}
