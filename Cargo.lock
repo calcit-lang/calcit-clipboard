@@ -109,9 +109,9 @@ dependencies = [
 
 [[package]]
 name = "cirru_edn"
-version = "0.2.12"
+version = "0.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "012e2628ebf44d21550bdf516f37b4d0556fd96b2f040a94f337bdc3235eaa6f"
+checksum = "4c630ba3df67b903603c4daeeaceea2de2fa99c9da93e8a69f42f33c37d66ebd"
 dependencies = [
  "cirru_parser",
  "hex",
@@ -120,9 +120,9 @@ dependencies = [
 
 [[package]]
 name = "cirru_parser"
-version = "0.1.17"
+version = "0.1.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d1cdf9af6d166ca8d8da5cd6fe2cc7ca9729d28ab5333e731322b7c4fbc2743"
+checksum = "db57e13c5181e48b287fbb5f6c8652b23c8bb30ffdc8cf63772c0fe17279f8b8"
 
 [[package]]
 name = "clap"
@@ -142,9 +142,9 @@ dependencies = [
 
 [[package]]
 name = "cli-clipboard"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c806d0d69ff99a6802438a2f2fb39af1bc3d3e0e72f100c3ee91cd7c63822e93"
+checksum = "40debc19e73992ef303534cce81b963a3706e54ae2f27ae2c136cdc6fe735232"
 dependencies = [
  "anyhow",
  "clipboard-win",

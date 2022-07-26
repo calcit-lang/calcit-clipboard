@@ -13,6 +13,6 @@ crate-type = ["dylib"] # Creates dynamic lib
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cirru_edn = "0.2.12"
-cirru_parser = "0.1.17"
-cli-clipboard = "0.2.0"
+cirru_edn = "0.2.20"
+cirru_parser = "0.1.23"
+cli-clipboard = "0.2.1"
