@@ -1,8 +1,8 @@
 [package]
 name = "clipboard"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["jiyinyiyong <jiyinyiyong@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [lib]
 name = "clipboard"
@@ -13,6 +13,6 @@ crate-type = ["dylib"] # Creates dynamic lib
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cirru_edn = "0.2.20"
-cirru_parser = "0.1.23"
-cli-clipboard = "0.2.1"
+cirru_edn = "0.5.0"
+cirru_parser = "0.1.25"
+cli-clipboard = "0.4.0"
