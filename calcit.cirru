@@ -1,6 +1,6 @@
 
 {} (:package |clipboard)
-  :configs $ {} (:init-fn |clipboard.test/main!) (:port 6001) (:reload-fn |clipboard.test/reload!) (:version |0.0.4)
+  :configs $ {} (:init-fn |clipboard.test/main!) (:port 6001) (:reload-fn |clipboard.test/reload!) (:version |0.0.5)
     :modules $ []
   :entries $ {}
   :files $ {}
