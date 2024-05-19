@@ -1,6 +1,6 @@
 [package]
 name = "clipboard"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["jiyinyiyong <jiyinyiyong@gmail.com>"]
 edition = "2021"
 

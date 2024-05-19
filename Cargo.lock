@@ -94,7 +94,7 @@ dependencies = [
 
 [[package]]
 name = "clipboard"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "cirru_edn",
  "cirru_parser",
