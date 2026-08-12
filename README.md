@@ -15,7 +15,7 @@ clipboard.core/copy! "|abc"
 clipboard.core/paste!
 ```
 
-Install to `~/.config/calcit/modules/`, compile and provide `*.{dylib,so}` file with `./build.sh`.
+Install to `~/.config/calcit/modules/`, compile and provide a platform-specific `*.{dylib,so,dll}` file with `./build.sh`.
 
 ### Workflow
 
