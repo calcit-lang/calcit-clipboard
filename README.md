@@ -15,7 +15,9 @@ clipboard.core/copy! "|abc"
 clipboard.core/paste!
 ```
 
-Install to `~/.config/calcit/modules/`, compile and provide `*.{dylib,so}` file with `./build.sh`.
+Install with `caps add calcit-lang/clipboard@<tag>` and run `caps`. The project-local
+`.calcit/modules/` view points at the versioned global module store. Compile and provide
+the matching `*.{dylib,so}` file with `./build.sh`.
 
 ### Workflow
 
