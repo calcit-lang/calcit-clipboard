@@ -11,9 +11,9 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: calcit-lang/setup-calcit@3b5843cb725963bb4ee158cfe49dad877134963e # v1
+      - uses: calcit-lang/setup-calcit@v1.3.0
 
       - name: Validate Calcit snapshot and types
         run: |
@@ -27,6 +27,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
+          components: clippy
 
       - uses: Swatinem/rust-cache@v2
 
@@ -34,6 +35,12 @@ jobs:
 
       - run: cargo build --release
 
-      - run: mkdir -p dylibs/ && ls target/release/ && cp -v target/release/*.* dylibs/
+      - run: cargo test
+
+      - run: cargo clippy --all-targets -- -D warnings
+
+      - run: mkdir -p dylibs/ && cp -v target/release/libclipboard.* dylibs/
+
+      - run: bash scripts/check-c-safe-ffi.sh
 
       - run: xvfb-run calcit calcit.cirru

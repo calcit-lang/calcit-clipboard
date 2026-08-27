@@ -1,16 +1,7 @@
 use cirru_edn::Edn;
 
-#[unsafe(no_mangle)]
-pub fn abi_version() -> String {
-  String::from("0.0.9")
-}
+mod ffi;
 
-#[unsafe(no_mangle)]
-pub fn edn_version() -> String {
-  cirru_edn::version().to_owned()
-}
-
-#[unsafe(no_mangle)]
 pub fn copy(args: Vec<Edn>) -> Result<Edn, String> {
   if args.len() == 1 {
     if let Edn::Str(name) = &args[0] {
@@ -26,7 +17,6 @@ pub fn copy(args: Vec<Edn>) -> Result<Edn, String> {
   }
 }
 
-#[unsafe(no_mangle)]
 pub fn paste(args: Vec<Edn>) -> Result<Edn, String> {
   if args.is_empty() {
     match cli_clipboard::get_contents() {
@@ -36,4 +26,26 @@ pub fn paste(args: Vec<Edn>) -> Result<Edn, String> {
   } else {
     Err(format!("paste! expected 0 arg, got {:?}", args))
   }
+}
+
+/// Invoke `copy` through C-safe buffer protocol v1.
+///
+/// # Safety
+///
+/// Request bytes must remain readable and `output` writable for this call.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn copy_calcit_ffi_v1(request_ptr: *const u8, request_len: usize, output: *mut ffi::CalcitFfiBuffer) -> i32 {
+  // SAFETY: the shared adapter validates and copies every foreign input.
+  unsafe { ffi::run_buffer_adapter(request_ptr, request_len, output, copy) }
+}
+
+/// Invoke `paste` through C-safe buffer protocol v1.
+///
+/// # Safety
+///
+/// Request bytes must remain readable and `output` writable for this call.
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn paste_calcit_ffi_v1(request_ptr: *const u8, request_len: usize, output: *mut ffi::CalcitFfiBuffer) -> i32 {
+  // SAFETY: the shared adapter validates and copies every foreign input.
+  unsafe { ffi::run_buffer_adapter(request_ptr, request_len, output, paste) }
 }
