@@ -1,7 +1,5 @@
 use cirru_edn::Edn;
 
-mod ffi;
-
 calcit_native_ffi::export_buffer_abi_v1!();
 
 pub fn copy(args: Vec<Edn>) -> Result<Edn, String> {
@@ -30,24 +28,5 @@ pub fn paste(args: Vec<Edn>) -> Result<Edn, String> {
   }
 }
 
-/// Invoke `copy` through C-safe buffer protocol v1.
-///
-/// # Safety
-///
-/// Request bytes must remain readable and `output` writable for this call.
-#[unsafe(no_mangle)]
-pub unsafe extern "C" fn copy_calcit_ffi_v1(request_ptr: *const u8, request_len: usize, output: *mut ffi::CalcitFfiBuffer) -> i32 {
-  // SAFETY: the shared adapter validates and copies every foreign input.
-  unsafe { ffi::run_buffer_adapter(request_ptr, request_len, output, copy) }
-}
-
-/// Invoke `paste` through C-safe buffer protocol v1.
-///
-/// # Safety
-///
-/// Request bytes must remain readable and `output` writable for this call.
-#[unsafe(no_mangle)]
-pub unsafe extern "C" fn paste_calcit_ffi_v1(request_ptr: *const u8, request_len: usize, output: *mut ffi::CalcitFfiBuffer) -> i32 {
-  // SAFETY: the shared adapter validates and copies every foreign input.
-  unsafe { ffi::run_buffer_adapter(request_ptr, request_len, output, paste) }
-}
+calcit_native_ffi::export_edn_buffer_method_v1!(copy_calcit_ffi_v1, copy);
+calcit_native_ffi::export_edn_buffer_method_v1!(paste_calcit_ffi_v1, paste);
