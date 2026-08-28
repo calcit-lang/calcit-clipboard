@@ -2,6 +2,8 @@ use cirru_edn::Edn;
 
 mod ffi;
 
+calcit_native_ffi::export_buffer_abi_v1!();
+
 pub fn copy(args: Vec<Edn>) -> Result<Edn, String> {
   if args.len() == 1 {
     if let Edn::Str(name) = &args[0] {
