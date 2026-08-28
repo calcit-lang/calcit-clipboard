@@ -96,7 +96,7 @@ dependencies = [
 
 [[package]]
 name = "clipboard"
-version = "0.0.9"
+version = "0.0.10"
 dependencies = [
  "calcit_native_ffi",
  "cirru_edn",
