@@ -15,6 +15,10 @@ clipboard.core/copy! "|abc"
 clipboard.core/paste!
 ```
 
+See [System clipboard boundary](docs/system-clipboard.md) for effect placement,
+error behavior, and headless-environment constraints. The page is indexed by
+`calcit docs read/search`.
+
 Install with `caps add calcit-lang/clipboard@<tag>` and run `caps`. The project-local
 `.calcit/modules/` view points at the versioned global module store. Compile and provide
 the matching `*.{dylib,so}` file with `./build.sh`.
