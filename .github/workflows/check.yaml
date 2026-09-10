@@ -10,6 +10,8 @@ jobs:
   build_and_test:
     name: Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v5
 
@@ -35,6 +37,8 @@ jobs:
       - uses: Swatinem/rust-cache@v2
 
       - run: sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev
+
+      - run: cargo fmt --all -- --check
 
       - run: cargo build --release
 
