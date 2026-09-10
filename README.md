@@ -10,9 +10,12 @@ APIs:
 
 ```cirru
 clipboard.core/copy! |abc
+```
 
-; "actually read from clipboard"
+Reading depends on clipboard contents supplied by another desktop client, so it is
+documented without treating the host state as a deterministic documentation test:
 
+```cirru.no-check
 clipboard.core/paste!
 ```
 
