@@ -23,6 +23,7 @@ entry_for:
 
 ```cirru.no-check
 clipboard.core/copy! |https://example.test/share/42
+
 let
     text $ clipboard.core/paste!
   validate-pasted-text text

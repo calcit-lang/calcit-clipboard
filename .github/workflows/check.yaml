@@ -20,9 +20,12 @@ jobs:
           caps --ci
           calcit calcit.cirru edit format
           git diff --exit-code -- calcit.cirru
-          calcit calcit.cirru --check-only
+          calcit calcit.cirru --strict-types --check-only
+          calcit calcit.cirru analyze quality
+          calcit calcit.cirru analyze dynamic-methods --max 0
           calcit calcit.cirru analyze check-types --summary-only --format json
           calcit calcit.cirru analyze weak-types --only schema-dynamic,code-dynamic --intent unresolved --summary-only --format json
+          calcit calcit.cirru docs format-md README.md --check
 
       - uses: dtolnay/rust-toolchain@stable
         with:
@@ -42,5 +45,10 @@ jobs:
       - run: mkdir -p dylibs/ && cp -v target/release/libclipboard.* dylibs/
 
       - run: bash scripts/check-c-safe-ffi.sh
+
+      - name: Validate executable documentation
+        run: |
+          xvfb-run calcit calcit.cirru docs check-md README.md --failures-only
+          xvfb-run calcit calcit.cirru docs check-md docs/system-clipboard.md --failures-only
 
       - run: xvfb-run calcit calcit.cirru

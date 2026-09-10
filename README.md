@@ -9,9 +9,10 @@ API 设计: https://github.com/calcit-lang/calcit_runner.rs/discussions/116 .
 APIs:
 
 ```cirru
-clipboard.core/copy! "|abc"
+clipboard.core/copy! |abc
 
 ; "actually read from clipboard"
+
 clipboard.core/paste!
 ```
 
@@ -24,11 +25,11 @@ Install with `caps add calcit-lang/clipboard@<tag>` and run `caps`. The project-
 the matching `*.{dylib,so}` file with `./build.sh`.
 
 The native library exports the C-safe buffer FFI v1 protocol and requires Calcit
-0.13.57 or newer. Shared descriptors, buffer ownership, Cirru EDN transport,
+0.14.7 or newer. Shared descriptors, buffer ownership, Cirru EDN transport,
 and adapters come from
 [`calcit_native_ffi`](https://github.com/calcit-lang/calcit-native-ffi).
 
-原生库要求 Calcit 0.13.57 或更新版本，并通过共享 `calcit_native_ffi`
+原生库要求 Calcit 0.14.7 或更新版本，并通过共享 `calcit_native_ffi`
 维护 descriptor、buffer ownership、Cirru EDN transport 与 adapter，不再在本
 仓库复制协议模板。Legacy Rust ABI symbols are intentionally no longer exported.
 
