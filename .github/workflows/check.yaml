@@ -48,7 +48,7 @@ jobs:
 
       - name: Validate executable documentation
         run: |
-          xvfb-run calcit calcit.cirru docs check-md README.md --failures-only
-          xvfb-run calcit calcit.cirru docs check-md docs/system-clipboard.md --failures-only
+          xvfb-run -a calcit calcit.cirru docs check-md README.md --failures-only
+          xvfb-run -a calcit calcit.cirru docs check-md docs/system-clipboard.md --failures-only
 
-      - run: xvfb-run calcit calcit.cirru
+      - run: xvfb-run -a calcit calcit.cirru
