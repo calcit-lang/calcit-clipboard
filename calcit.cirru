@@ -1,7 +1,12 @@
 
-{} (:about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --full` first. Manual edits must follow format and schema conventions, then run `calcit edit format`.") (:package |clipboard)
-  :entries $ {}
-    :default $ {} (:description |) (:init-fn 'clipboard.test/main!) (:mode :native) (:reload-fn 'clipboard.test/reload!)
+{}
+  :about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --contract` before mutations; use `--full` for first orientation or changed contract digest. Manual edits must follow format and schema conventions, then run `calcit edit format`."
+  :package |clipboard
+  :entries $ {} $ :default
+    {} (:description |)
+      :init-fn 'clipboard.test/main!
+      :mode :native
+      :reload-fn 'clipboard.test/reload!
       :feature-policy $ {}
       :modules $ []
       :type-slots $ {}
@@ -9,83 +14,71 @@
     'clipboard.core $ %{} 'FileEntry
       :defs $ {}
         'copy! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn copy! (content)
-              &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |copy content
+          :code $ quote $ defn copy! (content)
+            &call-dylib-edn
+              get-dylib-path |/dylibs/libclipboard
+              , |copy content
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'Unit)
-              :args $ [] 'String
+          :schema $ :: 'Fn $ {} (:return 'Unit)
+            :args $ [] 'String
         'paste! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn paste! () $ &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
+          :code $ quote $ defn paste! ()
+            &call-dylib-edn
+              get-dylib-path |/dylibs/libclipboard
+              , |paste
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'String)
-              :args $ []
+          :schema $ :: 'Fn $ {} (:return 'String)
+            :args $ []
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns clipboard.core $ :require
+        :code $ quote $ ns clipboard.core
+          :require
             clipboard.$meta :refer $ calcit-dirname
             clipboard.util :refer $ get-dylib-path
     'clipboard.test $ %{} 'FileEntry
       :defs $ {}
         'main! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn main! () $ run-tests
+          :code $ quote $ defn main! () (run-tests)
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'Unit)
-              :args $ []
+          :schema $ :: 'Fn $ {} (:return 'Unit)
+            :args $ []
         'reload! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn reload! $
+          :code $ quote $ defn reload! ()
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'Unit)
-              :args $ []
+          :schema $ :: 'Fn $ {} (:return 'Unit)
+            :args $ []
         'run-tests $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn run-tests () (println "|%%%% test for clipboard")
-              println "|read clipboard" $ paste!
-              println "|write to.." $ copy!
-                str $ range 100
+          :code $ quote $ defn run-tests ()
+            println "|%%%% test for clipboard"
+            println "|read clipboard" $ paste!
+            println "|write to.." $ copy! $ str (range 100)
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'Unit)
-              :args $ []
+          :schema $ :: 'Fn $ {} (:return 'Unit)
+            :args $ []
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns clipboard.test $ :require
-            clipboard.core :refer $ copy! paste!
+        :code $ quote $ ns clipboard.test
+          :require $ clipboard.core :refer $ copy! paste!
     'clipboard.util $ %{} 'FileEntry
       :defs $ {}
         'get-dylib-ext $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defmacro get-dylib-ext () $ case-default (&get-os) |.so (:macos |.dylib) (:windows |.dll)
+          :code $ quote $ defmacro get-dylib-ext ()
+            case-default (&get-os) |.so (:macos |.dylib) (:windows |.dll)
           :examples $ []
-          :schema $ :: 'Macro
-            {}
-              :capabilities $ #{} :platform-read
-              :expansion $ :: 'Expr 'String
-              :required $ []
+          :schema $ :: 'Macro $ {}
+            :capabilities $ #{} :platform-read
+            :expansion $ :: 'Expr 'String
+            :required $ []
         'get-dylib-path $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn get-dylib-path (p)
-              str (or-current-path calcit-dirname) p $ get-dylib-ext
+          :code $ quote $ defn get-dylib-path (p)
+            str (or-current-path calcit-dirname) p $ get-dylib-ext
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'String)
-              :args $ [] 'String
+          :schema $ :: 'Fn $ {} (:return 'String)
+            :args $ [] 'String
         'or-current-path $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn or-current-path (p)
-              if (blank? p) |. p
+          :code $ quote $ defn or-current-path (p)
+            if (blank? p) |. p
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'String)
-              :args $ [] 'String
+          :schema $ :: 'Fn $ {} (:return 'String)
+            :args $ [] 'String
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns clipboard.util $ :require
-            clipboard.$meta :refer $ calcit-dirname calcit-filename
+        :code $ quote $ ns clipboard.util
+          :require $ clipboard.$meta :refer $ calcit-dirname calcit-filename
