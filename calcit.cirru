@@ -3,10 +3,7 @@
   :about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --contract` before mutations; use `--full` for first orientation or changed contract digest. Manual edits must follow format and schema conventions, then run `calcit edit format`."
   :package |clipboard
   :entries $ {} $ :default
-    {} (:description |)
-      :init-fn 'clipboard.test/main!
-      :mode :native
-      :reload-fn 'clipboard.test/reload!
+    {} (:description |) (:init-fn 'clipboard.test/main!) (:mode :native) (:reload-fn 'clipboard.test/reload!)
       :feature-policy $ {}
       :modules $ []
       :type-slots $ {}
@@ -15,17 +12,13 @@
       :defs $ {}
         'copy! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn copy! (content)
-            &call-dylib-edn
-              get-dylib-path |/dylibs/libclipboard
-              , |copy content
+            &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |copy content
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ [] 'String
         'paste! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn paste! ()
-            &call-dylib-edn
-              get-dylib-path |/dylibs/libclipboard
-              , |paste
+            &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'String)
             :args $ []
@@ -47,8 +40,7 @@
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'run-tests $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn run-tests ()
-            println "|%%%% test for clipboard"
+          :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
             println "|read clipboard" $ paste!
             println "|write to.." $ copy! $ str (range 100)
           :examples $ []
