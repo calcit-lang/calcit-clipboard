@@ -41,8 +41,21 @@
             :args $ []
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
-            println "|read clipboard" $ paste!
-            println "|write to.." $ copy! $ str (range 100)
+            if
+              = |1 $ assert-type (&get-env |CALCIT_CLIPBOARD_TEST |) 'String
+              let
+                  original $ paste!
+                try
+                  let
+                      expected $ str $ range 100
+                    copy! expected
+                    let
+                        actual $ paste!
+                      assert= actual expected
+                    copy! original
+                    println "|clipboard roundtrip passed"
+                  fn (error) (copy! original) (raise error)
+              println "|clipboard integration test skipped; set CALCIT_CLIPBOARD_TEST=1 to run"
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []

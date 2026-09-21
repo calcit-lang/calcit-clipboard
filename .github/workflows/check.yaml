@@ -38,7 +38,7 @@ jobs:
 
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
 
-      - run: sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev
+      - run: sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev xclip
 
       - run: cargo fmt --all -- --check
 
@@ -57,4 +57,7 @@ jobs:
           xvfb-run -a calcit calcit.cirru docs check-md README.md --failures-only
           xvfb-run -a calcit calcit.cirru docs check-md docs/system-clipboard.md --failures-only
 
-      - run: xvfb-run -a calcit calcit.cirru
+      - name: Run clipboard integration test
+        env:
+          CALCIT_CLIPBOARD_TEST: 1
+        run: xvfb-run -a sh -c 'printf %s ci-original | xclip -selection clipboard && calcit calcit.cirru'
