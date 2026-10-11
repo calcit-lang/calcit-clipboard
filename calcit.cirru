@@ -13,12 +13,15 @@
         'copy! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn copy! (content)
             &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |copy content
+            , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ [] 'String
         'paste! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn paste! ()
-            &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
+            decode-map-as
+              &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
+              , 'String
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'String)
             :args $ []
@@ -42,7 +45,7 @@
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
             if
-              = |1 $ assert-type (&get-env |CALCIT_CLIPBOARD_TEST |) 'String
+              = |1 $ decode-map-as (&get-env |CALCIT_CLIPBOARD_TEST |) 'String
               let
                   original $ paste!
                 try
@@ -56,6 +59,7 @@
                     println "|clipboard roundtrip passed"
                   fn (error) (copy! original) (raise error)
               println "|clipboard integration test skipped; set CALCIT_CLIPBOARD_TEST=1 to run"
+            , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
@@ -66,7 +70,7 @@
       :defs $ {}
         'get-dylib-ext $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defmacro get-dylib-ext ()
-            case-default (&get-os) |.so (:macos |.dylib) (:windows |.dll)
+            match (&get-os) (:macos |.dylib) (:windows |.dll) (_ |.so)
           :examples $ []
           :schema $ :: 'Macro $ {}
             :capabilities $ #{} :platform-read
