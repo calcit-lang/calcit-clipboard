@@ -13,12 +13,15 @@
         'copy! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn copy! (content)
             &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |copy content
+            , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ [] 'String
         'paste! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn paste! ()
-            &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
+            decode-map-as
+              &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
+              , 'String
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'String)
             :args $ []
@@ -35,7 +38,7 @@
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
         'reload! $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn reload! ()
+          :code $ quote $ defn reload! () &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
@@ -43,6 +46,7 @@
           :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
             println "|read clipboard" $ paste!
             println "|write to.." $ copy! $ str (range 100)
+            , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
@@ -53,7 +57,7 @@
       :defs $ {}
         'get-dylib-ext $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defmacro get-dylib-ext ()
-            case-default (&get-os) |.so (:macos |.dylib) (:windows |.dll)
+            match (&get-os) (:macos |.dylib) (:windows |.dll) (_ |.so)
           :examples $ []
           :schema $ :: 'Macro $ {}
             :capabilities $ #{} :platform-read

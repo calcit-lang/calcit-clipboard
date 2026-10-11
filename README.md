@@ -27,12 +27,12 @@ Install with `caps add calcit-lang/clipboard@<tag>` and run `caps`. The project-
 `.calcit/modules/` view points at the versioned global module store. Compile and provide
 the matching `*.{dylib,so}` file with `./build.sh`.
 
-The native library exports the C-safe buffer FFI v1 protocol and requires Calcit
-0.14.7 or newer. Shared descriptors, buffer ownership, Cirru EDN transport,
+The module targets Calcit 0.29.0. Its native library exports the C-safe buffer FFI
+v1 protocol. Shared descriptors, buffer ownership, Cirru EDN transport,
 and adapters come from
 [`calcit_native_ffi`](https://github.com/calcit-lang/calcit-native-ffi).
 
-原生库要求 Calcit 0.14.7 或更新版本，并通过共享 `calcit_native_ffi`
+模块使用 Calcit 0.29.0，并通过共享 `calcit_native_ffi`
 维护 descriptor、buffer ownership、Cirru EDN transport 与 adapter，不再在本
 仓库复制协议模板。Legacy Rust ABI symbols are intentionally no longer exported.
 

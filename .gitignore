@@ -13,5 +13,6 @@
 compact.cirru
 
 /dylibs/
+/.calcit/
 
 .DS_Store

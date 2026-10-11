@@ -17,18 +17,19 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: calcit-lang/setup-calcit@704b3f5cd6f9ce3bd1e0c926dbdd1d181adb8180 # v1
+      - uses: calcit-lang/setup-calcit@ca701be5a471759e442aa053cd100720bbe1f09f # v1.5.0
+        with:
+          tools: calcit,caps
+          version: 0.29.0
+          caps-version: 0.1.1
 
       - name: Validate Calcit snapshot and types
         run: |
-          caps --ci
+          caps --strict --ci
+          caps verify --toolchain
           calcit calcit.cirru edit format
           git diff --exit-code -- calcit.cirru
-          calcit calcit.cirru --strict-types --check-only
-          calcit calcit.cirru analyze quality
-          calcit calcit.cirru analyze dynamic-methods --max 0
-          calcit calcit.cirru analyze check-types --summary-only --format json
-          calcit calcit.cirru analyze weak-types --only schema-dynamic,code-dynamic --intent unresolved --summary-only --format json
+          calcit calcit.cirru --strict-types --check-only --all-defs
           calcit calcit.cirru docs format-md README.md --check
 
       - uses: dtolnay/rust-toolchain@stable
@@ -42,11 +43,11 @@ jobs:
 
       - run: cargo fmt --all -- --check
 
-      - run: cargo build --release
+      - run: cargo build --release --locked
 
-      - run: cargo test
+      - run: cargo test --locked
 
-      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo clippy --locked --all-targets -- -D warnings
 
       - run: mkdir -p dylibs/ && cp -v target/release/libclipboard.* dylibs/
 
