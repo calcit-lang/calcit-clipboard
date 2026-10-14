@@ -40,9 +40,9 @@ and adapters come from
 
 https://github.com/calcit-lang/dylib-workflow
 
-本仓库使用正式 Calcit 0.29.0，默认入口显式声明 native target；公开的
+本仓库使用正式 Calcit 0.29.3，默认入口显式声明 native target；公开的
 `copy! : String → Unit` 与 `paste! : () → String` 合同保持不变。
-Rust 模块版本、依赖及 C-safe ABI 不变，不包含前端资源或 COS 部署。
+Rust 依赖及 C-safe ABI 不变，不包含前端资源或 COS 部署。
 
 CI 保留严格公开定义检查、Rust fmt/test/clippy、release dylib
 符号审计、文档执行与 Xvfb 剪贴板往返测试，并补全所有项目命名空间的公开
