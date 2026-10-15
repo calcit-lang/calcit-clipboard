@@ -45,7 +45,7 @@
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
             if
-              = |1 $ decode-map-as (&get-env |CALCIT_CLIPBOARD_TEST |) 'String
+              = |1 $ .unwrap-or (get-env |CALCIT_CLIPBOARD_TEST) |
               let
                   original $ paste!
                 try
