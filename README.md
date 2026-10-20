@@ -40,7 +40,11 @@ and adapters come from
 
 https://github.com/calcit-lang/dylib-workflow
 
-本仓库使用正式 Calcit 0.30.0，默认入口显式声明 native target；公开的
+使用者影响：本轮源码声明更新为已发布的 Calcit `0.30.1-alpha.5`，不是正式
+`0.30.1` 的跨平台兼容声明；当前正式发行资产尚未包含 macOS 二进制。
+本模块仅使用 native runtime，不依赖 `@calcit/procs`。
+已发布的模块 `0.0.18` tag 保持原内容，本轮不发布新模块版本。
+默认入口显式声明 native target；公开的
 `copy! : String → Unit` 与 `paste! : () → String` 合同保持不变。
 Rust 依赖及 C-safe ABI 不变，不包含前端资源或 COS 部署。
 
