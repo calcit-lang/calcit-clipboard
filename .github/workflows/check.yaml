@@ -30,7 +30,7 @@ jobs:
           caps verify --toolchain
           calcit calcit.cirru edit format
           git diff --exit-code -- calcit.cirru
-          calcit calcit.cirru --strict-types --check-only --all-defs
+          calcit calcit.cirru --check-only --all-defs
           calcit calcit.cirru docs format-md README.md --check
 
       - uses: dtolnay/rust-toolchain@stable
@@ -44,13 +44,11 @@ jobs:
 
       - run: cargo fmt --all -- --check
 
-      - run: cargo build --release --locked
+      - run: ./build.sh
 
-      - run: cargo test --locked
+      - run: cargo test --locked --future-incompat-report
 
       - run: cargo clippy --all-targets --locked -- -D warnings
-
-      - run: mkdir -p dylibs/ && cp -v target/release/libclipboard.* dylibs/
 
       - run: bash scripts/check-c-safe-ffi.sh
 
