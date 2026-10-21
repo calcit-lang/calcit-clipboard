@@ -17,6 +17,9 @@ copy!/paste! 仍须由用户显式操作触发，类型通过不代表宿主权�
 原生 build.sh 从第一次 Cargo 调用起使用 --locked，锁不匹配时失败，不在安装时隐式修改。
 保留平台产物复制规则，不再清空整个 dylibs；CI直接复用该入口，减少重复构建/复制。
 Cargo crate 保持0.0.18，不发布 crates.io 包。下游重复构建步骤须独立验收后再精简。
+原 Linux 构建报告 wl-clipboard-rs 0.7.0 的 Rust 未来不兼容警告；本轮只将锁文件中该
+兼容依赖更新为正式 patch 0.7.1，不改后端选型或使用 Git fork。Xvfb 仅验收 X11，
+不能据此宣称已完成真实 Wayland 桌面兼容验收。
 
 API 设计: https://github.com/calcit-lang/calcit_runner.rs/discussions/116 .
 
