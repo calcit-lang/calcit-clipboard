@@ -46,7 +46,7 @@ jobs:
 
       - run: ./build.sh
 
-      - run: cargo test --locked
+      - run: cargo test --locked --future-incompat-report
 
       - run: cargo clippy --all-targets --locked -- -D warnings
 
