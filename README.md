@@ -63,7 +63,8 @@ https://github.com/calcit-lang/dylib-workflow
 本模块仅使用 native runtime，不依赖 `@calcit/procs`；既有 `0.0.18` tag 不移动。
 默认入口显式声明 native target；公开的
 `copy! : String → Unit` 与 `paste! : () → String` 合同保持不变。
-Rust 依赖及 C-safe ABI 不变，不包含前端资源或 COS 部署。
+本仓库 Rust 业务逻辑与 C-safe ABI 不变；兼容 Wayland 依赖 patch 更新见文首。
+不包含前端资源或 COS 部署。
 
 CI 保留严格公开定义检查、Rust fmt/test/clippy、release dylib
 符号审计、文档执行与 Xvfb 剪贴板往返测试，并补全所有项目命名空间的公开
