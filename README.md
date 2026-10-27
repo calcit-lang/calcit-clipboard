@@ -2,24 +2,21 @@
 
 > Calcit binding to clipboard, based on [cli_clipboard](https://docs.rs/cli-clipboard/latest/cli_clipboard/index.html).
 
-### 正式 0.30.1 配对：使用者影响
+### 正式 0.31.0 配对：使用者影响
 
-候选模块 **0.0.19** 要求正式 **Calcit 0.30.1**。下游同步 deps.cirru 的精确工具链声明并
-保留 Caps strict；仅运行 native，没有 npm runtime / JS/WASM 配对，不部署业务应用。
-候选号不等于已发布版本。
+候选模块 **0.0.20** 要求正式 **Calcit 0.31.0**。下游同步 deps.cirru 的精确工具链声明并
+保留 Caps strict；本模块仅支持 native，没有 npm runtime / JS/WASM 配对。
+候选号不等于已发布版本；发布前仍使用已有正式 tag，不移动历史 tag。
 
-本次 Snapshot 与当前 main 相同。相对已发布 **0.0.18**，发布还会包含此前测试开关读取从
-底层 &get-env 迁到公开 get-env/Option 合同；copy!/paste!、Rust、宿主副作用、错误与C-safe ABI
-不变，不能称整个 Snapshot 与旧 tag 相同。真实读写仅在 CI 的隔离 Xvfb 与合成剪贴板中验收，
-不读取或覆盖维护者桌面内容。
-copy!/paste! 仍须由用户显式操作触发，类型通过不代表宿主权限或剪贴板可用。
+相对已发布 **0.0.19**，本次仅更新工具链声明及说明，Snapshot、Rust、Cargo.lock、
+`copy! : String → Unit`、`paste! : () → String` 和 C-safe ABI 均不变。
+剪贴板读写仍须由用户显式操作触发；类型检查通过不代表宿主权限或剪贴板可用。
+真实读写沿用原 CI 的隔离 Xvfb 和合成剪贴板验收，不读取或覆盖维护者桌面内容。
+Xvfb 仅验收 X11，不能据此宣称完成真实 Wayland 桌面兼容验收。
 
 原生 build.sh 从第一次 Cargo 调用起使用 --locked，锁不匹配时失败，不在安装时隐式修改。
-保留平台产物复制规则，不再清空整个 dylibs；CI直接复用该入口，减少重复构建/复制。
-Cargo crate 保持0.0.18，不发布 crates.io 包。下游重复构建步骤须独立验收后再精简。
-原 Linux 构建报告 wl-clipboard-rs 0.7.0 的 Rust 未来不兼容警告；本轮只将锁文件中该
-兼容依赖更新为正式 patch 0.7.1，不改后端选型或使用 Git fork。Xvfb 仅验收 X11，
-不能据此宣称已完成真实 Wayland 桌面兼容验收。
+保留平台产物复制规则，不清空整个 dylibs；CI 复用该入口。
+Cargo crate 保持 0.0.18，不发布 crates.io 包。
 
 API 设计: https://github.com/calcit-lang/calcit_runner.rs/discussions/116 .
 
@@ -59,20 +56,14 @@ and adapters come from
 
 https://github.com/calcit-lang/dylib-workflow
 
-本轮源码声明配对正式 Calcit `0.30.1`，不将 Linux 验收扩大为所有平台兼容声明。
-本模块仅使用 native runtime，不依赖 `@calcit/procs`；既有 `0.0.18` tag 不移动。
-默认入口显式声明 native target；公开的
-`copy! : String → Unit` 与 `paste! : () → String` 合同保持不变。
-本仓库 Rust 业务逻辑与 C-safe ABI 不变；兼容 Wayland 依赖 patch 更新见文首。
-不包含前端资源或 COS 部署。
+本轮源码声明配对正式 Calcit `0.31.0`，不将 Linux 验收扩大为所有平台兼容声明。
+本模块不依赖 `@calcit/procs`，不包含前端资源或 COS 部署。
+默认入口显式声明 native target。
 
-CI 保留严格公开定义检查、Rust fmt/test/clippy、release dylib
-符号审计、文档执行与 Xvfb 剪贴板往返测试，并补全所有项目命名空间的公开
-定义检查；删除重复的报告型扫描，不增加新校验脚本。
-本地不会读取或修改桌面剪贴板，宿主相关文档和集成测试以 Linux CI 为准。
-`cargo test` 当前没有 Rust 单元测试，不能代替这项集成验收。
-本地原匹配 alpha.5 的严格检查与构建不代替精确提交的正式 Linux CI；
-CI不再使用已弃用的冗余 --strict-types 开关，默认严格全部定义检查保留。
+CI 保留全部定义严格检查、Rust fmt/test/clippy、release dylib 符号审计、文档执行与
+Xvfb 剪贴板往返测试，不增加校验脚本或放宽门禁。
+`cargo test` 当前没有 Rust 单元测试，不能代替剪贴板集成验收。
+本地不会读取或修改桌面剪贴板，宿主相关文档和集成测试以精确提交的 Linux CI 为准。
 
 Action 使用正式版本标签；标签可被上游移动，因此只读权限及禁用 checkout
 凭据持久化仅限制令牌权限，不提供不可变供应链保证。
