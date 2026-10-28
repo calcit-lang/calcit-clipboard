@@ -15,16 +15,14 @@
             &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |copy content
             , &unit
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ [] 'String
+          :schema $ quote $ Fn String (-> Unit)
         'paste! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn paste! ()
             decode-map-as
               &call-dylib-edn (get-dylib-path |/dylibs/libclipboard) |paste
               , 'String
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'String)
-            :args $ []
+          :schema $ quote $ Fn (-> String)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns clipboard.core
           :require
@@ -35,13 +33,11 @@
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (run-tests)
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'reload! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn reload! () &unit
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
         'run-tests $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn run-tests () (println "|%%%% test for clipboard")
             if
@@ -61,8 +57,7 @@
               println "|clipboard integration test skipped; set CALCIT_CLIPBOARD_TEST=1 to run"
             , &unit
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'Unit)
-            :args $ []
+          :schema $ quote $ Fn (-> Unit)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns clipboard.test
           :require $ clipboard.core :refer $ copy! paste!
@@ -72,22 +67,19 @@
           :code $ quote $ defmacro get-dylib-ext ()
             match (&get-os) (:macos |.dylib) (:windows |.dll) (_ |.so)
           :examples $ []
-          :schema $ :: 'Macro $ {}
-            :capabilities $ #{} :platform-read
-            :expansion $ :: 'Expr 'String
-            :required $ []
+          :schema $ quote $ Macro
+            -> $ Expr String
+            :capabilities :platform-read
         'get-dylib-path $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn get-dylib-path (p)
             str (or-current-path calcit-dirname) p $ get-dylib-ext
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'String)
-            :args $ [] 'String
+          :schema $ quote $ Fn String (-> String)
         'or-current-path $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn or-current-path (p)
             if (blank? p) |. p
           :examples $ []
-          :schema $ :: 'Fn $ {} (:return 'String)
-            :args $ [] 'String
+          :schema $ quote $ Fn String (-> String)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns clipboard.util
           :require $ clipboard.$meta :refer $ calcit-dirname calcit-filename
