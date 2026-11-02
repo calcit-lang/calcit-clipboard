@@ -2,14 +2,13 @@
 
 > Calcit binding to clipboard, based on [cli_clipboard](https://docs.rs/cli-clipboard/latest/cli_clipboard/index.html).
 
-### 正式 0.32.1 配对：使用者影响
+### 正式 0.34.1 配对：使用者影响
 
-候选模块 **0.0.22** 要求正式 **Calcit 0.32.1**。下游同步 deps.cirru 的精确工具链声明并
+候选模块 **0.0.22** 要求正式 **Calcit 0.34.1**。下游同步 deps.cirru 的精确工具链声明并
 保留 Caps strict；本模块仅支持 native，没有 npm runtime / JS/WASM 配对。
 候选号不等于已发布版本；发布前仍使用已有正式 tag，不移动历史 tag。
 
-已发布的 **0.0.21** 配对 0.32.0，当前 main 已采用新的类型语法；本次只更新候选版本、工具链声明及说明。Snapshot 保持逐字节不变，公开类型、Rust、Cargo.lock、
-`copy! : String → Unit`、`paste! : () → String` 和 C-safe ABI 均不变。
+本次对齐 Calcit 0.34.1。公开接口为 `copy! : String → Unit` 和 `paste! : () → String`，扫描未发现需要用 union 收紧的公开 Dynamic 参数。
 剪贴板读写仍须由用户显式操作触发；类型检查通过不代表宿主权限或剪贴板可用。
 真实读写沿用原 CI 的隔离 Xvfb 和合成剪贴板验收，不读取或覆盖维护者桌面内容。
 Xvfb 仅验收 X11，不能据此宣称完成真实 Wayland 桌面兼容验收。
@@ -56,7 +55,7 @@ and adapters come from
 
 https://github.com/calcit-lang/dylib-workflow
 
-本轮源码声明配对正式 Calcit `0.32.1`，不将 Linux 验收扩大为所有平台兼容声明。
+本轮源码声明配对正式 Calcit `0.34.1`，不将 Linux 验收扩大为所有平台兼容声明。
 本模块不依赖 `@calcit/procs`，不包含前端资源或 COS 部署。
 默认入口显式声明 native target。
 
