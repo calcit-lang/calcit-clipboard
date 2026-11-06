@@ -38,9 +38,15 @@ See [System clipboard boundary](docs/system-clipboard.md) for effect placement,
 error behavior, and headless-environment constraints. The page is indexed by
 `calcit docs read/search`.
 
-Install with `caps add calcit-lang/calcit-clipboard@<tag>` and run `caps`. The project-local
-`.calcit/modules/` view points at the versioned global module store. Compile and provide
-the matching `*.{dylib,so}` file with `./build.sh`.
+If `deps.cirru` still lists `calcit-lang/clipboard`, run
+`caps remove calcit-lang/clipboard` and replace `clipboard/` with
+`calcit-clipboard/` in the `:modules` list of each affected Snapshot entry.
+The Calcit namespace used by callers remains `clipboard.core`.
+
+Install with `caps add calcit-lang/calcit-clipboard@<tag>` using a published tag, then run
+`caps --strict --ci`. The project-local `.calcit/modules/calcit-clipboard/` link points
+at the versioned global module store. Compile and provide the matching
+`*.{dylib,so}` file with `./build.sh`.
 
 The native library exports the C-safe buffer FFI v1 protocol. This module
 requires the exact Calcit 0.35.1 declared in `deps.cirru`. Shared descriptors, buffer ownership, Cirru EDN transport,
