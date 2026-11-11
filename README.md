@@ -2,13 +2,13 @@
 
 > Calcit binding to clipboard, based on [cli_clipboard](https://docs.rs/cli-clipboard/latest/cli_clipboard/index.html).
 
-### 正式 0.40.0 配对：使用者影响
+### 正式 0.41.0 配对：使用者影响
 
-候选模块 **0.0.23** 要求正式 **Calcit 0.40.0**。下游同步 deps.cirru 的精确工具链声明并
+候选模块 **0.0.23** 要求正式 **Calcit 0.41.0**。下游同步 deps.cirru 的精确工具链声明并
 保留 Caps strict；本模块仅支持 native，没有 npm runtime / JS/WASM 配对。
 候选号不等于已发布版本；发布前仍使用已有正式 tag，不移动历史 tag。
 
-本次对齐 Calcit 0.40.0。公开接口为 `copy! : String → Unit` 和 `paste! : () → String`，扫描未发现需要用 union 收紧的公开 Dynamic 参数。
+本次对齐 Calcit 0.41.0。公开接口为 `copy! : String → Unit` 和 `paste! : () → String`，扫描未发现需要用 union 收紧的公开 Dynamic 参数。
 剪贴板读写仍须由用户显式操作触发；类型检查通过不代表宿主权限或剪贴板可用。
 真实读写沿用原 CI 的隔离 Xvfb 和合成剪贴板验收，不读取或覆盖维护者桌面内容。
 Xvfb 仅验收 X11，不能据此宣称完成真实 Wayland 桌面兼容验收。
@@ -49,11 +49,11 @@ at the versioned global module store. Compile and provide the matching
 `*.{dylib,so}` file with `./build.sh`.
 
 The native library exports the C-safe buffer FFI v1 protocol. This module
-requires the exact Calcit 0.40.0 declared in `deps.cirru`. Shared descriptors, buffer ownership, Cirru EDN transport,
+requires the exact Calcit 0.41.0 declared in `deps.cirru`. Shared descriptors, buffer ownership, Cirru EDN transport,
 and adapters come from
 [`calcit_native_ffi`](https://github.com/calcit-lang/calcit-native-ffi).
 
-本模块使用 deps.cirru 声明的精确 Calcit 0.40.0，并通过共享 `calcit_native_ffi`
+本模块使用 deps.cirru 声明的精确 Calcit 0.41.0，并通过共享 `calcit_native_ffi`
 维护 descriptor、buffer ownership、Cirru EDN transport 与 adapter，不再在本
 仓库复制协议模板。Legacy Rust ABI symbols are intentionally no longer exported.
 
@@ -61,7 +61,7 @@ and adapters come from
 
 https://github.com/calcit-lang/dylib-workflow
 
-本轮源码声明配对正式 Calcit `0.40.0`，不将 Linux 验收扩大为所有平台兼容声明。
+本轮源码声明配对正式 Calcit `0.41.0`，不将 Linux 验收扩大为所有平台兼容声明。
 本模块不依赖 `@calcit/procs`，不包含前端资源或 COS 部署。
 默认入口显式声明 native target。
 
