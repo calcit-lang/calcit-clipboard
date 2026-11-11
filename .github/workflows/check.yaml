@@ -40,13 +40,7 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
-      - name: Install clipboard system dependencies
-        run: |
-          if [ -f /etc/apt/apt-mirrors.txt ]; then
-            sudo sed -Ei 's|https?://azure\.archive\.ubuntu\.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/apt-mirrors.txt
-          fi
-          sudo apt-get update
-          sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev xclip
+      - run: sudo apt-get install -y libxcb-shape0-dev libxcb-xfixes0-dev xclip
 
       - run: cargo fmt --all -- --check
 
